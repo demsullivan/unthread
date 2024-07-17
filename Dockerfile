@@ -1,5 +1,8 @@
 FROM ruby:3.3-slim-bookworm
 
+LABEL org.opencontainers.image.source=https://github.com/demsullivan/unthread
+LABEL org.opencontainers.image.description="Base development image for Unthread"
+
 SHELL [ "/bin/bash", "--login", "-c" ]
 
 ENV DEBIAN_FRONTEND=noninteractive
