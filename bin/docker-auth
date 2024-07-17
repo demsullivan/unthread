@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [ ! -e .github-docker-token ]; then
+  echo "In order to authenticate to the Github Container Registry, you'll need to create a Personal Access Token (classic)."
+  echo "Go here and create a token, then paste it here:"
+  echo "https://github.com/settings/tokens/new?scopes=write:packages&description=Unthread%20Packages%20Token"
+  read -p "Personal access token: " gh_pat
+  echo $gh_pat > .github-docker-token
+fi
+
+if [ ! -e .github-username ]; then
+  read -p "Enter your Github username: " gh_username
+  echo $gh_username > .github-username
+fi
+
+gh_pat=`cat .github-docker-token`
+gh_username=`cat .github-username`
+
+echo $gh_pat | docker login ghcr.io -u $gh_username --password-stdin
