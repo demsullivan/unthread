@@ -1,2 +1,3 @@
 import '@hotwired/turbo-rails'
-import '../styles/application.scss'
+import './application.scss'
+import '../controllers'

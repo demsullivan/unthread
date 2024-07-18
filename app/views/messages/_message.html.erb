@@ -1,0 +1,9 @@
+<div class="w-full flex flex-col">
+  <div class="flex flex-row items-center justify-start gap-2">
+    <div class="font-bold"><%= message.sender.display_name %></div>
+    <div class="text-sm"><%= time_ago_in_words(message.created_at) %> ago</div>
+  </div>
+  <div class="w-full">
+    <%= message.content %>
+  </div>
+</div>

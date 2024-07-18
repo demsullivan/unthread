@@ -10,6 +10,7 @@ services:
     image: ghcr.io/demsullivan/unthread-development
     build:
       context: .
+    command: [ "bash", "-c", "bundle exec puma -C config/puma.rb" ]
     env_file:
       - .env.development
     volumes:
@@ -17,6 +18,8 @@ services:
       - bundle:/bundle
       - yarn:/app/node_modules
     tmpfs: /app/tmp/pids
+    ports:
+      - 3000:3000
     depends_on:
       - postgres
       - redis
@@ -33,7 +36,7 @@ services:
       - app
     command: ["bash", "-c", "./bin/vite dev"]
     ports:
-      - 3005:3005
+      - 3036:3036
 
   postgres:
     image: postgres:16
@@ -46,6 +49,7 @@ services:
       DATABASE_NAME_DEV: unthread_development
     volumes:
       - postgres:/var/lib/postgresql/data
+      - ./docker/pg_scripts:/docker-entrypoint-initdb.d
     
   redis:
     image: redis:alpine

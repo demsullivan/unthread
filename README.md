@@ -15,3 +15,9 @@ Simply build the image and bring the services up:
 docker compose build app
 docker compose up
 ```
+
+### Accessing a container shell
+
+```shell
+docker compose run app /bin/bash --login
+```
