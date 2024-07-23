@@ -17,7 +17,7 @@
   </div>
   <% if message.thread_messages.count.positive? %>
     <div class="w-full text-xs">
-      <%= link_to root_path(thread_id: message.id), class: "text-blue-400 underline" do %>c
+      <%= link_to root_path(thread_id: message.id), class: "text-blue-400 underline" do %>
         <%= message.thread_messages.count %> replies
       <% end %>
     </div>
