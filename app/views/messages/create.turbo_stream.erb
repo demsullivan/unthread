@@ -1,0 +1,4 @@
+<%= turbo_stream.append "messages_#{@target}", @message %>
+<% if @message.thread.present? %>
+  <%= turbo_stream.replace "message_#{@message.thread_id}", @message.thread %>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="flex flex-col h-full w-full">
+  <%= turbo_stream_from source %>
+  <div id="messages_<%= source %>" class="flex flex-col justify-end overflow-scroll w-full h-full gap-2 pl-2 pb-2">
+    <%= render messages %>
+  </div>
+  <div class="w-full">
+    <%= form_with(model: new_message, remote: true, class: "w-full flex flex-row", data: { controller: 'chat-input', action: 'turbo:submit-end->chat-input#reset' }) do |f| %>
+      <%= f.hidden_field :thread_id %>
+      <%= f.text_field :content, autocomplete: 'off', class: "w-11/12 border-2", required: true %>
+      <%= f.submit "Send", data: { disable_with: false }, class: "w-1/12 bg-blue-400 rounded" %>
+    <% end %>
+  </div>
+</div>

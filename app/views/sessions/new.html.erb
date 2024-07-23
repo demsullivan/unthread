@@ -1,9 +1,18 @@
-<%= form_for(:session) do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+<div class="h-full w-full flex justify-center items-center">
+  
+  <%= form_for(:session, class: "grid grid-cols-1 md:grid-cols-2 w-1/4 gap-3") do |f| %>
+    <div class="md:col-span-2 text-center mb-5">
+      <h2 class="text-2xl">Unthread</h2>
+    </div>
 
-  <%= f.label :display_name %>
-  <%= f.text_field :display_name %>
+    <div class="text-center"><%= f.label :username %></div>
+    <div><%= f.text_field :username, required: true, class: "border-2" %></div>
 
-  <%= f.submit "Join" %>
-<% end %>
+    <div class="text-center"><%= f.label :display_name %></div>
+    <div><%= f.text_field :display_name, required: true, class: "border-2" %></div>
+
+    <div class="md:col-span-2 flex justify-center mt-5">
+      <%= f.submit "Join", class: "bg-blue-400 text-white rounded px-4 py-2" %>
+    </div>
+  <% end %>
+</div>

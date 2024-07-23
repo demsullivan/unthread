@@ -7,18 +7,13 @@ class Message < ApplicationRecord
   has_many   :thread_messages, class_name: "Message", inverse_of: :thread
 
   ################################################################################
-  # Callbacks
+  # Validations
   ################################################################################
-  after_create_commit :broadcast_message
-
-  def broadcast_message
-    target = thread || "chat"
-    Rails.logger.debug("broadcasting to #{target}")
-    broadcast_append_to target
-  end
+  validates_presence_of :content
 
   ################################################################################
   # Scopes
   ################################################################################
   scope :to_main_chat, -> { where(thread: nil) }
+  scope :backlog,      -> { order('created_at DESC').limit(50).sort_by(&:created_at) }
 end

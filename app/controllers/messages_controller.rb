@@ -5,13 +5,15 @@ class MessagesController < ApplicationController
       return
     end
 
-    Message.create(
+    @message = Message.create(
       sender:  current_user,
-      content: create_params[:content]
+      **create_params
     )
+
+    @target = @message.thread&.id || "chat"
   end
 
   private def create_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :thread_id)
   end
 end

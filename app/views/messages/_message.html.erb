@@ -1,9 +1,25 @@
-<div class="w-full flex flex-col">
-  <div class="flex flex-row items-center justify-start gap-2">
-    <div class="font-bold"><%= message.sender.display_name %></div>
-    <div class="text-sm"><%= time_ago_in_words(message.created_at) %> ago</div>
+<div class="w-full flex flex-col group" id="message_<%= message.id %>">
+  <div class="flex flex-row items-center justify-between">
+    <div class="flex flex-row items-center justify-start gap-2">
+      <div class="font-bold"><%= message.sender.display_name %></div>
+      <%# TODO: refresh the timestamp periodically in the frontend #%>
+      <div class="text-sm"><%= time_ago_in_words(message.created_at) %> ago</div>
+    </div>
+    <div class="hidden group-hover:block">
+      <%= 
+        link_to "Reply", root_path(thread_id: message.id), 
+          class: "text-blue-400 text-xs border-2 border-blue-400 rounded px-2 py-1"
+      %>
+    </div>
   </div>
   <div class="w-full">
     <%= message.content %>
   </div>
+  <% if message.thread_messages.count.positive? %>
+    <div class="w-full text-xs">
+      <%= link_to root_path(thread_id: message.id), class: "text-blue-400 underline" do %>c
+        <%= message.thread_messages.count %> replies
+      <% end %>
+    </div>
+  <% end %>
 </div>
