@@ -1,4 +1,7 @@
-<%= turbo_stream.append "messages_#{@target}", @message %>
+<%= turbo_stream.append_all "[data-messages-id='#{@target}']".html_safe, 
+  partial: "messages/message", locals: { message: @message, pane: @pane } 
+%>
 <% if @message.thread.present? %>
-  <%= turbo_stream.replace "message_#{@message.thread_id}", @message.thread %>
+  <%= turbo_stream.replace_all "[data-message-id='#{@message.thread_id}']".html_safe,
+    partial: "messages/message", locals: { message: @message.thread, pane: @pane } %>
 <% end %>

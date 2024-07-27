@@ -9,3 +9,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Pane.all.destroy_all
+
+user = User.find_or_create_by!(username: "dave", display_name: "Dave")
+user.create_viewport!(
+  layout: nil,
+  active_tab: "chat", 
+  tabs: [{ name: "Chat", id: "chat", closeable: false }]
+)

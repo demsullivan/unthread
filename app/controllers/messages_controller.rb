@@ -1,4 +1,10 @@
 class MessagesController < ApplicationController
+  before_action :fetch_pane
+
+  private def fetch_pane
+    @pane = Pane.find(params.dig(:message, :pane_id))
+  end
+  
   def create
     if current_user.nil?
       head :not_found

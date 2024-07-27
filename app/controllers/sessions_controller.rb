@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_or_create_by(create_params)
+    user = User.find_or_create_by(create_params) do |u|
+      u.create_viewport(active_tab: "chat", tabs: [{ name: "Chat", id: "chat", closeable: false }])
+    end
 
     if user
       log_in(user)

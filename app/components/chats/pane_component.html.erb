@@ -1,0 +1,36 @@
+<%= tag.turbo_frame id: dom_id(pane) do %>
+  <div class="h-full w-full <%= layout_classes %>">
+    <% if pane.layout.present? %>
+      <% pane.child_pane_instances.each do |child_pane_instance| %>
+        <div style="<%= child_pane_styles(child_pane_instance) %>">
+          <%= render Chats::PaneComponent.new(pane: child_pane_instance.child_pane) %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="flex flex-col h-full w-full">
+        <div class="flex flex-row">
+          <div class="flex flex-row grow">
+            <% pane.tabs.each do |tab| %>
+              <%= render Chats::TabComponent.new(pane:, tab:) %>
+            <% end %>
+          </div>
+          <div class="flex flex-row">
+            <%= link_to split_pane_path(:vertical), data: { 'turbo-method': :patch }, class: "p-3 border-2" do %>
+              Vert
+            <% end %>
+            <%= link_to split_pane_path(:horizontal), data: { 'turbo-method': :patch }, class: "p-3 border-2" do %>
+              Horiz
+            <% end %>
+          </div>
+        </div>
+        <div class="h-[90%]">
+          <%= 
+            render    "chats/chat_window", 
+            source:   pane.active_tab,
+            pane:, messages:,  new_message:
+          %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

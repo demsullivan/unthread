@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "tab_#{params[:id]}" do %>
+  <%=
+    render "chat_window",
+    source:      params[:id],
+    messages:    @messages,
+    new_message: @message
+  %>
+<% end %>

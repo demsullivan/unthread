@@ -1099,6 +1099,11 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+winbox@^0.2.82:
+  version "0.2.82"
+  resolved "https://registry.yarnpkg.com/winbox/-/winbox-0.2.82.tgz#915e0a4591cefcb3df6aab83ea2006e8da0804f9"
+  integrity sha512-fMHaLnnuhyw1mLvzmCTWMpRKDfXUK/Z08VdbyBqDaITFFAd3Fx2BGDCF6rzGSkWrQgo8fHTFpFICofyM36FTnA==
+
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"

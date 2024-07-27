@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col group" id="message_<%= message.id %>">
+<div class="w-full flex flex-col group" data-message-id="<%= message.id %>">
   <div class="flex flex-row items-center justify-between">
     <div class="flex flex-row items-center justify-start gap-2">
       <div class="font-bold"><%= message.sender.display_name %></div>
@@ -7,7 +7,8 @@
     </div>
     <div class="hidden group-hover:block">
       <%= 
-        link_to "Reply", root_path(thread_id: message.id), 
+        link_to "Reply", pane_tabs_path(pane, id: message.id),
+          data: { 'turbo-method': :post },
           class: "text-blue-400 text-xs border-2 border-blue-400 rounded px-2 py-1"
       %>
     </div>
@@ -17,7 +18,7 @@
   </div>
   <% if message.thread_messages.count.positive? %>
     <div class="w-full text-xs">
-      <%= link_to root_path(thread_id: message.id), class: "text-blue-400 underline" do %>
+      <%= link_to pane_tabs_path(pane, id: message.id), data: { 'turbo-method': :post }, class: "text-blue-400 underline" do %>
         <%= message.thread_messages.count %> <%= "reply".pluralize(message.thread_messages.count) %>
       <% end %>
     </div>

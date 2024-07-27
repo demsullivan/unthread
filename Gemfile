@@ -51,3 +51,7 @@ group :development do
   gem 'rubocop-rspec_rails', require: false # Linter extension
   gem 'web-console' # Interactive web-based debugger console. Just call `console`.
 end
+
+gem "view_component", "~> 3.13"
+
+gem "dry-initializer", "~> 3.1"
